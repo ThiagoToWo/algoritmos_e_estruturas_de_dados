@@ -4,8 +4,8 @@ export default class Stack {
 		this._itens = {};		
 	}
 	
-	push(elt) {
-		this._itens[this._n] = elt;
+	push(elmt) {
+		this._itens[this._n] = elmt;
 		this._n++;
 	}
 	

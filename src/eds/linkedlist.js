@@ -1,11 +1,11 @@
-function defaultEquals(a, b) {
+export function defaultEquals(a, b) {
 	return a === b;
 }
 
-class Node {
-	constructor(elt) {
-		this.element = elt;
-		this.nextNode = undefined;
+export class Node {
+	constructor(elmt) {
+		this.element = elmt;
+		this.next = undefined;
 	}
 }
 
@@ -16,36 +16,36 @@ export default class LinkedList {
 		this._equals = equalsFuntion;
 	}
 	
-	push(elt) {
-		const node = new Node(elt);		
+	push(elmt) {
+		const node = new Node(elmt);		
 		
 		if (this.isEmpty()) {
 			this._head = node;
 		} else {
 			let current = this._head;
 			
-			while (current.nextNode != null) {
-				current = current.nextNode;
+			while (current.next != null) {
+				current = current.next;
 			}
 			
-			current.nextNode = node;
+			current.next = node;
 		}
 		
 		this._n++;
 	}
 	
-	insert(elt, index) {
-		if (index >= 0 && index <= this.size()) {
-			let node = new Node(elt);
+	insert(elmt, indx) {
+		if (indx >= 0 && indx <= this.size()) {
+			const node = new Node(elmt);
 			
-			if (index === 0) {				
-				node.nextNode = this._head;
+			if (indx === 0) {				
+				node.next = this._head;
 				this._head = node;
 			} else {
-				let previous = this.getElementAt(index - 1);
-				let current = previous.nextNode;
-				node.nextNode = current;
-				previous.nextNode = node;
+				let previous = this.getElementAt(indx - 1);
+				let current = previous.next;
+				node.next = current;
+				previous.next = node;
 			}
 			
 			this._n++;
@@ -56,12 +56,12 @@ export default class LinkedList {
 		return false;
 	}
 	
-	getElementAt(index) {
-		if (index >=0 && index < this.size()) {
+	getElementAt(indx) {
+		if (indx >=0 && indx < this.size()) {
 			let current = this._head;
 			
-			for (let i = 0; i < index; i++) {
-				current = current.nextNode;
+			for (let i = 0; i < indx; i++) {
+				current = current.next;
 			}
 			
 			return current;
@@ -70,21 +70,21 @@ export default class LinkedList {
 		return undefined;
 	}
 	
-	remove(elt) {
-		let index = this.indexOf(elt);
-		this.removeAt(index);
+	remove(elmt) {
+		let indx = this.indexOf(elmt);
+		this.removeAt(indx);
 	}
 	
-	removeAt(index) {
-		if (index >= 0 && index < this.size()) {
+	removeAt(indx) {
+		if (indx >= 0 && indx < this.size()) {
 			let current = this._head;
 			
-			if (index === 0) {
-				this._head = current.nextNode;
+			if (indx === 0) {
+				this._head = current.next;
 			} else {
-				let previous = this.getElementAt(index - 1);				
-				current = previous.nextNode;
-				previous.nextNode = current.nextNode;				
+				let previous = this.getElementAt(indx - 1);				
+				current = previous.next;
+				previous.next = current.next;				
 			}
 			this._n--;
 				
@@ -94,15 +94,15 @@ export default class LinkedList {
 		return undefined;
 	}
 	
-	indexOf(elt) {
+	indexOf(elmt) {
 		let current = this._head;
 		
 		for (let i = 0; i < this.size(); i++) {
-			if (this._equals(elt, current.element)) {
+			if (this._equals(elmt, current.element)) {
 				return i;
 			}
 			
-			current = current.nextNode;
+			current = current.next;
 		}
 		
 		return -1;
@@ -126,7 +126,7 @@ export default class LinkedList {
 				
 		for (let i = 0; i < this.size(); i++) {
 			str += current.element + ' ';
-			current = current.nextNode;
+			current = current.next;
 		}
 		
 		return str;

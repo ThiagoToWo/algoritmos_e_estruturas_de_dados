@@ -1,38 +1,38 @@
 export default class Deque {
 	constructor() {
 		this._tail = 0;
-		this._nose = 0;
+		this._head = 0;
 		this._itens = {};
 	}
 	
-	addFront(elt) {
+	addFront(elmt) {
 		if (this.isEmpty()) {
-			this.addBack(elt);
-		} else if (this._nose > 0) {
-			this._nose--;
-			this._itens[this._nose] = elt;
+			this.addBack(elmt);
+		} else if (this._head > 0) {
+			this._head--;
+			this._itens[this._head] = elmt;
 		} else {
 			for (let i = this._tail; i > 0; i--) {
 				this._itens[i] = this._itens[i - 1];
 			}
 			
-			this._itens[0] = elt;
+			this._itens[0] = elmt;
 			this._tail++;
-			this._nose = 0;
+			this._head = 0;
 		}
 	}
 	
-	addBack(elt) {
-		this._itens[this._tail] = elt;
+	addBack(elmt) {
+		this._itens[this._tail] = elmt;
 		this._tail++;
 	}
 	
 	removeFront() {
 		if (this.isEmpty()) return undefined;
 		
-		let item = this._itens[this._nose];
-		delete this._itens[this._nose];
-		this._nose++;
+		let item = this._itens[this._head];
+		delete this._itens[this._head];
+		this._head++;
 		
 		return item;
 	}
@@ -50,7 +50,7 @@ export default class Deque {
 	peekFront() {
 		if (this.isEmpty()) return undefined;
 		
-		return this._itens[this._nose];
+		return this._itens[this._head];
 	}
 	
 	peekBack() {
@@ -64,12 +64,12 @@ export default class Deque {
 	}
 	
 	size() {
-		return this._tail - this._nose;
+		return this._tail - this._head;
 	}
 	
 	clear() {
 		this._tail = 0;
-		this._nose = 0;
+		this._head = 0;
 		this._itens = {};
 	}
 }

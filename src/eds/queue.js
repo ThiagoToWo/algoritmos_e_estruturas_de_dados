@@ -1,21 +1,21 @@
 export default class Queue {
 	constructor() {
 		this._tail = 0;
-		this._nose = 0;
+		this._head = 0;
 		this._itens = {};
 	}
 	
-	enqueue(elt) {
-		this._itens[this._tail] = elt;
+	enqueue(elmt) {
+		this._itens[this._tail] = elmt;
 		this._tail++;
 	}
 	
 	dequeue() {
 		if (this.isEmpty()) return undefined;
 		
-		let item = this._itens[this._nose];
-		delete this._itens[this._nose];
-		this._nose++;
+		let item = this._itens[this._head];
+		delete this._itens[this._head];
+		this._head++;
 		
 		return item;
 	}
@@ -23,7 +23,7 @@ export default class Queue {
 	peek() {
 		if (this.isEmpty()) return undefined;
 		
-		return this._itens[this._nose];
+		return this._itens[this._head];
 	}
 	
 	isEmpty() {
@@ -31,12 +31,12 @@ export default class Queue {
 	}
 	
 	size() {
-		return this._tail - this._nose;
+		return this._tail - this._head;
 	}
 	
 	clear() {
 		this._tail = 0;
-		this._nose = 0;
+		this._head = 0;
 		this._itens = {};
 	}	
 }
