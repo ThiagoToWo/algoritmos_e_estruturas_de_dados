@@ -9,7 +9,7 @@ export class Node {
 	}
 }
 
-export default class LinkedList {
+export class LinkedList {
 	constructor(equalsFuntion = defaultEquals) {
 		this._n = 0;
 		this._head = undefined;

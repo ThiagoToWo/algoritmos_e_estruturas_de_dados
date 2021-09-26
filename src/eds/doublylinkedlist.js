@@ -1,4 +1,4 @@
-import {defaultEquals, Node} from './linkedlist.js';
+import {defaultEquals, Node, LinkedList} from './linkedlist.js';
 
 class DoublyNode extends Node {
 	constructor(elmt) {
@@ -7,14 +7,28 @@ class DoublyNode extends Node {
 	}
 }
 
-export default class DoublyLinkedList {
+export default class DoublyLinkedList extends LinkedList {
 	constructor(equalsFuntion = defaultEquals) {
-		this._n = 0;
-		this._head = undefined;
+		super(equalsFuntion);
 		this._tail = undefined;
-		this._equals = equalsFuntion;
 	}
+	
+	push(elmt) {
+		const node = new DoublyNode(elmt);
 		
+		if (this.isEmpty()) {
+			this._head = node;
+			this._tail = node;
+		} else {
+			let previous = this._tail;
+			previous.next = node;
+			node.prev = previous;
+			this._tail = node;
+		}
+		
+		this._n++;
+	}
+	
 	insert(elmt, index) {
 		if (index >= 0 && index <= this.size()) {
 			const node = new DoublyNode(elmt);
@@ -82,45 +96,7 @@ export default class DoublyLinkedList {
 		return undefined;
 	}
 	
-	getElementAt(indx) {
-		if (indx >=0 && indx < this.size()) {
-			let current = this._head;
-			
-			for (let i = 0; i < indx; i++) {
-				current = current.next;
-			}
-			
-			return current;
-		}
-		
-		return undefined;
-	}
-	
-	isEmpty() {
-		return this.size() === 0;
-	}
-	
-	size() {
-		return this._n;
-	}
-	
-	getHead() {
-		return this._head;
-	}
-	
 	getTail() {
 		return this._tail;
-	}
-	
-	toString() {
-		let str = '';
-		let current = this._head;
-				
-		for (let i = 0; i < this.size(); i++) {
-			str += current.element + ' ';
-			current = current.next;
-		}
-		
-		return str;
 	}
 }
