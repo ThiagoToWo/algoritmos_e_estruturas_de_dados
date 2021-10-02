@@ -76,7 +76,7 @@ export default class DoublyLinkedList extends LinkedList {
 				if (this.size() === 1) {
 					this._tail = undefined
 				}
-			} else if (index === this.size() -1) {
+			} else if (index === this.size() - 1) {
 				current = this._tail;
 				let previous = current.prev;
 				this._tail = previous;

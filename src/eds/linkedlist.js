@@ -34,15 +34,15 @@ export class LinkedList {
 		this._n++;
 	}
 	
-	insert(elmt, indx) {
-		if (indx >= 0 && indx <= this.size()) {
+	insert(elmt, index) {
+		if (index >= 0 && index <= this.size()) {
 			const node = new Node(elmt);
 			
-			if (indx === 0) {				
+			if (index === 0) {				
 				node.next = this._head;
 				this._head = node;
 			} else {
-				let previous = this.getElementAt(indx - 1);
+				let previous = this.getElementAt(index - 1);
 				let current = previous.next;
 				node.next = current;
 				previous.next = node;
@@ -56,11 +56,11 @@ export class LinkedList {
 		return false;
 	}
 	
-	getElementAt(indx) {
-		if (indx >=0 && indx < this.size()) {
+	getElementAt(index) {
+		if (index >=0 && index < this.size()) {
 			let current = this._head;
 			
-			for (let i = 0; i < indx; i++) {
+			for (let i = 0; i < index; i++) {
 				current = current.next;
 			}
 			
@@ -71,18 +71,18 @@ export class LinkedList {
 	}
 	
 	remove(elmt) {
-		let indx = this.indexOf(elmt);
-		this.removeAt(indx);
+		let index = this.indexOf(elmt);
+		this.removeAt(index);
 	}
 	
-	removeAt(indx) {
-		if (indx >= 0 && indx < this.size()) {
+	removeAt(index) {
+		if (index >= 0 && index < this.size()) {
 			let current = this._head;
 			
-			if (indx === 0) {
+			if (index === 0) {
 				this._head = current.next;
 			} else {
-				let previous = this.getElementAt(indx - 1);				
+				let previous = this.getElementAt(index - 1);				
 				current = previous.next;
 				previous.next = current.next;				
 			}
