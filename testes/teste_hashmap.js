@@ -9,6 +9,9 @@ function log(...str) {
 h.put('Thiago', 24981701997);
 h.put('João', 3299825636);
 h.put('Tereza', 2467879808);
+log('Thiago:', 'hash ->',h.toHashCode('Thiago'));
+log('João:', 'hash ->',h.toHashCode('João'));
+log('Tereza:', 'hash ->',h.toHashCode('Tereza'));
 log('O valor de Thiago é', h.get('Thiago'));
 log('O valor de João é', h.get('João'));
 log('O valor de Tereza é', h.get('Tereza'));
