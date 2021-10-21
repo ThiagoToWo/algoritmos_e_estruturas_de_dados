@@ -3,11 +3,9 @@ function defaultToString(elmt) {
 		return 'NULL';
 	} else if (elmt === undefined) {
 		return 'UNDEFINED';
-	} else if (typeof elmt == 'string' || elmt instanceof String) {
+	} else if (typeof elmt === 'string' || elmt instanceof String) {
 		return elmt;
-	} else if (typeof elmt == 'number' || elmt instanceof Number) {
-		return String(elmt);
-	} else if (typeof elmt == 'boolean' || elmt instanceof Boolean) {
+	} else if (typeof elmt === 'boolean' || elmt instanceof Boolean) {
 		return String(elmt);
 	}
 	
@@ -40,6 +38,8 @@ export default class HashMap {
 	}
 	
 	get(key) {
+		if (key == null) return undefined;
+		
 		const hash = this.toHashCode(key);
 		
 		return this._table[hash].value;
@@ -61,6 +61,8 @@ export default class HashMap {
 	}
 	
 	toHashCode(key) {
+		if (typeof key === 'number') return key;
+		
 		const keyStr = this._toStr(key);
 		const p = 53;
 		const M = 1e9 + 9;
