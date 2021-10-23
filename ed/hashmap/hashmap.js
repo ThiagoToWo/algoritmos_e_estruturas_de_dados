@@ -1,3 +1,5 @@
+import {LinkedList} from '../linkedlist/linkedlist.js';
+
 function defaultToString(elmt) {
 	if (elmt === null) {
 		return 'NULL';
@@ -26,12 +28,15 @@ export default class HashMap {
 		this._toStr = toStringFunction;
 	}
 	
-	put(key, value) {
+	put(key, value) {		
+		if (key == null || value == null) return false;		
+		
 		const hash = this.toHashCode(key);
 		
-		if (key == null || value == null) return false;
-		
-		this._table[hash] = new Pair(key, value);
+		if (this._table[hash] == null) this._table[hash] = new LinkedList();
+			
+	    this._table[hash].push(new Pair(key, value));			
+				
 		this._n++;
 		
 		return true;
@@ -41,19 +46,46 @@ export default class HashMap {
 		if (key == null) return undefined;
 		
 		const hash = this.toHashCode(key);
+		const list = this._table[hash];
+				
+		if (list == null || list.isEmpty()) return undefined;
 		
-		return this._table[hash].value;
+		let current = list.getHead();
+		
+		while (current != null) {
+			if (current.element.key === key) {
+				return current.element.value;
+			}
+			
+			current = current.next;
+		}
 	}
 	
 	remove(key) {
+		if (key == null) return false;
+		
 		const hash = this.toHashCode(key);
+		const list = this._table[hash];
+				
+		if (list == null || list.isEmpty()) return false;
 		
-		if (this._table[hash] == null) return false;
+		let current = list.getHead();
 		
-		delete this._table[hash];
-		this._n--;
-		
-		return true;
+		while (current != null) {
+			if (current.element.key === key) {
+				list.remove(current.element);
+				
+				if (list.isEmpty()) {
+					delete this._table[hash];
+				}
+				
+				this._n--;
+				
+				return true;
+			}
+			
+			current = current.next;
+		}		
 	}
 	
 	size() {
