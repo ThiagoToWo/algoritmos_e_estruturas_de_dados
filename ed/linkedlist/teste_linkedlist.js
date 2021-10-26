@@ -1,4 +1,4 @@
-import {LinkedList} from './linkedlist.js';
+import LinkedList from './linkedlist.js';
 
 console.log('Criando uma linkedlist com equalsFunction padrão.');
 const l = new LinkedList();

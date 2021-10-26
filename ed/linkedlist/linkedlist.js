@@ -1,15 +1,6 @@
-export function defaultEquals(a, b) {
-	return a === b;
-}
+import {defaultEquals, ListNode} from '../util.js';
 
-export class Node {
-	constructor(elmt) {
-		this.element = elmt;
-		this.next = undefined;
-	}
-}
-
-export class LinkedList {
+export default class LinkedList {
 	constructor(equalsFuntion = defaultEquals) {
 		this._n = 0;
 		this._head = undefined;
@@ -17,7 +8,7 @@ export class LinkedList {
 	}
 	
 	push(elmt) {
-		const node = new Node(elmt);		
+		const node = new ListNode(elmt);		
 		
 		if (this.isEmpty()) {
 			this._head = node;
@@ -36,7 +27,7 @@ export class LinkedList {
 	
 	insert(elmt, index) {
 		if (index >= 0 && index <= this.size()) {
-			const node = new Node(elmt);
+			const node = new ListNode(elmt);
 			
 			if (index === 0) {				
 				node.next = this._head;

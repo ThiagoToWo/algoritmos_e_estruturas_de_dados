@@ -1,10 +1,5 @@
-import {defaultEquals, LinkedList} from '../linkedlist.js';
-
-function defaultCompare(a, b) {
-	if (a === b) return 0;
-	else if (a > b) return 1;
-	else return -1;
-}
+import {defaultEquals, defaultCompare} from '/ed/util.js';
+import LinkedList from '../linkedlist.js';
 
 export default class SortedLinkedList extends LinkedList {
 	constructor(equalsFunction = defaultEquals, compareFunction = defaultCompare) {

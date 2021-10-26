@@ -1,11 +1,5 @@
-import {defaultEquals, Node, LinkedList} from '../linkedlist.js';
-
-class DoublyNode extends Node {
-	constructor(elmt) {
-		super(elmt);
-		this.prev = undefined;
-	}
-}
+import {defaultEquals, DoublyNode} from '/ed/util.js';
+import LinkedList from '../linkedlist.js';
 
 export default class DoublyLinkedList extends LinkedList {
 	constructor(equalsFuntion = defaultEquals) {

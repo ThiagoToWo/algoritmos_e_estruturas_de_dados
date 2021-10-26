@@ -1,4 +1,5 @@
-import {defaultEquals, Node, LinkedList} from '../linkedlist.js';
+import {defaultEquals, ListNode} from '/ed/util.js';
+import LinkedList from '../linkedlist.js';
 
 export default class CircularLinkedList extends LinkedList {
 	constructor(equalsFunction = defaultEquals) {
@@ -6,24 +7,12 @@ export default class CircularLinkedList extends LinkedList {
 	}
 	
 	push(elmt) {
-		/*let node = new Node(elmt);
-		
-		if (this.isEmpty()) {			
-			this._head = node;			
-		} else {
-			let last = this.getElementAt(this.size() - 1);
-			last.next = node;
-		}
-		
-		node.next = this._head;	
-		this._n++;*/
-		
 		this.insert(elmt, this.size());
 	}
 	
 	insert(elmt, index) {		
 		if (index >= 0 && index <= this.size()) {
-			const node = new Node(elmt);			
+			const node = new ListNode(elmt);			
 			let current = this._head;
 			
 			if (index === 0) {

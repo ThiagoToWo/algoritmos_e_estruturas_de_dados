@@ -1,25 +1,5 @@
-import {LinkedList} from '../linkedlist/linkedlist.js';
-
-function defaultToString(elmt) {
-	if (elmt === null) {
-		return 'NULL';
-	} else if (elmt === undefined) {
-		return 'UNDEFINED';
-	} else if (typeof elmt === 'string' || elmt instanceof String) {
-		return elmt;
-	} else if (typeof elmt === 'boolean' || elmt instanceof Boolean) {
-		return String(elmt);
-	}
-	
-	return elmt.toString();
-}
-
-class Pair {
-	constructor(key, value) {
-		this.key = key;
-		this.value = value;
-	}
-}
+import LinkedList from '../linkedlist/linkedlist.js';
+import {defaultToString, Pair} from '../util.js';
 
 export default class HashMap {
 	constructor(toStringFunction = defaultToString) {
