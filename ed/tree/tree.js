@@ -16,7 +16,7 @@ export default class Tree {
 	}
 	
 	search(key) {
-		
+		this._searchNode(this._root);
 	}
 	
 	inOrder(callback) {
@@ -32,11 +32,23 @@ export default class Tree {
 	}
 	
 	min() {
+		let current = (this._root != null) ? this._root : undefined;
 		
+		while (current.left != null) {
+			current = current.left;
+		}
+		
+		return current.key;
 	}
 	
 	max() {
+		let current = (this._root != null) ? this._root : undefined;
 		
+		while (current.right != null) {
+			current = current.right;
+		}
+		
+		return current.key;
 	}
 	
 	remove(key) {
@@ -60,24 +72,36 @@ export default class Tree {
 		}
 	}
 	
+	_searchNode(node) {
+		if (node == null) return false;
+		
+		if (this.compare(key, node.key) === 0) { // igual
+			return true;
+		} else if (this.compare(key, node.key) === -1) { // menor
+			this._searchNode(node.left);
+		} else { // maior
+			this._searchNode(node.right);
+		}
+	}
+	
 	_inO(node, callback) {
 		if (node == null) return;
-		this._inO(node.left);
-		callback(node); // in
-		this._inO(node.right);
+		this._inO(node.left, callback);
+		callback(node.key); // in
+		this._inO(node.right, callback);
 	}
 	
 	_prO(node, callback) {
 		if (node == null) return;
-		callback(node); // pre
-		this._prO(node.left);
-		this._prO(node.right);
+		callback(node.key); // pre
+		this._prO(node.left, callback);
+		this._prO(node.right, callback);
 	}
 	
 	_poO(node, callback) {
 		if (node == null) return;
-		this._poO(node.left);
-		this._poO(node.right);
-		callback(node);	// post
+		this._poO(node.left, callback);
+		this._poO(node.right, callback);
+		callback(node.key);	// post
 	}
 }
