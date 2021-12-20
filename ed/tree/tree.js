@@ -32,27 +32,15 @@ export default class Tree {
 	}
 	
 	min() {
-		let current = (this._root != null) ? this._root : undefined;
-		
-		while (current.left != null) {
-			current = current.left;
-		}
-		
-		return current.key;
+		return this._minNode(this._root);		
 	}
 	
 	max() {
-		let current = (this._root != null) ? this._root : undefined;
-		
-		while (current.right != null) {
-			current = current.right;
-		}
-		
-		return current.key;
+		return this._maxNode(this._root);
 	}
 	
 	remove(key) {
-		
+		this._root = this._removeNode(this._root, key);
 	}
 	
 	// Métodos internos.
@@ -104,4 +92,48 @@ export default class Tree {
 		this._poO(node.right, callback);
 		callback(node.key);	// post
 	}
+	
+	_minNode(node) {
+		let current = (node != null) ? node : undefined;
+		
+		while (current.left != null) {
+			current = current.left;
+		}
+		
+		return current;
+	}
+	
+	_maxNode(node) {
+		let current = (node != null) ? node : undefined;
+		
+		while (current.right != null) {
+			current = current.right;
+		}
+		
+		return current;
+	}
+	_removeNode(node, key) {
+		if (node == null) return null;
+		
+		if (this.compare(key, node.key) === -1) {
+			node.left = this._removeNode(node.left, key);			
+		} else if (this.compare(key, node.key) === 1) {
+			node.right = this._removeNode(node.right, key);			
+		} else {
+			// não tem filhos
+			if (node.left == null && node.right == null) {
+				node = null;
+			} else if (node.left == null) { // falta um dos filhos
+				node = node.right;
+			} else if (node.right == null) {
+				node = node.left;
+			} else { // tem os dois filhos
+				const successor = this._minNode(node.right);
+				node.key = successor.key;
+				node.right = this._removeNode(node.right, successor.key);
+			}				
+		}
+		
+		return node;
+	};
 }
