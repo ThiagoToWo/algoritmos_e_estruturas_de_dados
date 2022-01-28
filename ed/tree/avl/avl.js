@@ -65,7 +65,7 @@ export default class AVLTree extends Tree {
 		return aux;
 	}
 	
-	insert(key) {
+	insert(key) { // versão com retorno do nó inserido
 		this._root = this._insertNode(this._root, key);
 	}
 	
@@ -73,6 +73,7 @@ export default class AVLTree extends Tree {
 		this._root = this._removeNode(this._root, key);
 	}
 	
+	// sobrescreve a versão da classe superior para uma que retorne o nó inserido
 	_insertNode(node, key) { 
 		if (node == null) {
 			return new TreeNode(key);
