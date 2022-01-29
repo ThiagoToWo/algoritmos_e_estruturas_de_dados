@@ -10,12 +10,9 @@ export default class AVLTree extends Tree {
 	getNodeHeight(node) {
 		if (node == null) {
 			return -1;
-		}
-		
-		return Math.max(
-			this.getNodeHeight(node.left), 
-			this.getNodeHeight(node.right)
-		) + 1;
+		} else {
+			return node.height;
+		}		
 	}
 	
 	getBalanceFactor(node) {
@@ -29,39 +26,50 @@ export default class AVLTree extends Tree {
 		return this.getNodeHeight(node.left) - this.getNodeHeight(node.right);
 	}
 	
+	updateHeight(node) {
+		node.height = Math.max(
+			this.getNodeHeight(node.left), 
+			this.getNodeHeight(node.right)
+		) + 1;
+	}
+	
 	/**
-    * Caso esquerda-esquerda: rotação a direita
-    *
-    *       50                            30
-    *      /  \                          /  \
-    *     30  70 -> rotatieRigth(50) -> 10  50
-    *    /  \                          /   /  \
-    *   10  40                        5   40  70
-    *  /
+	* Caso esquerda-esquerda: rotação a direita
+	*
+	*       50                            30
+	*      /  \                          /  \
+	*     30  70 -> rotatieRigth(50) -> 10  50
+	*    /  \                          /   /  \
+	*   10  40                        5   40  70
+	*  /
 	* 5
-    **/
+	**/
 	rotateRight(node) {
 		let aux = node.left;
 		node.left = aux.right;
 		aux.right = node;
+		this.updateHeight(node);
+		this.updateHeight(aux);
 		return aux;
 	}
 	
 	/**
-    * Caso direita-direita: rotação a esquerda
-    *
-    *     50                            70
-    *    /  \                          /  \
-    *   30  70   -> rotateLeft(50) -> 50  80
-    *      /  \                      /  \   \
-    *     60  80                    30  60  90
-    *           \
+	* Caso direita-direita: rotação a esquerda
+	*
+	*     50                            70
+	*    /  \                          /  \
+	*   30  70   -> rotateLeft(50) -> 50  80
+	*      /  \                      /  \   \
+	*     60  80                    30  60  90
+	*           \
 	*           90
-    **/
+	**/
 	rotateLeft(node) {
 		let aux = node.right;
 		node.right = aux.left;
 		aux.left = node;
+		this.updateHeight(node);
+		this.updateHeight(aux);
 		return aux;
 	}
 	
@@ -85,14 +93,16 @@ export default class AVLTree extends Tree {
 			return node;
 		}
 		
+		this.updateHeight(node);
 		return this._rebalance(node);
 	}
 	
 	_removeNode(node, key) {
 		node = super._removeNode(node, key);
 		
-		if (node == null) return node;
+		if (node == null) return node;		
 		
+		this.updateHeight(node);
 		return this._rebalance(node);
 	}
 	
@@ -104,7 +114,7 @@ export default class AVLTree extends Tree {
 			if (this.getBalanceFactor(node.right) > 0) { 
 				// rotaciona este filho pra direita
 				node.right = this.rotateRight(node.right);
-			}			
+			}
 			// rotaciona o pai para esquerda
 			return this.rotateLeft(node);
 		} else if (balanceFactor > 1) { // nó desbalanceado a esquerda
