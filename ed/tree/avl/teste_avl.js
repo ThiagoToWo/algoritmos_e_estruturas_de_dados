@@ -1,49 +1,52 @@
 import AVLTree from './avl.js';
 
-const t = new AVLTree();
+const a = new AVLTree();
 
 const log = (...str) =>	console.log(...str);
 
 function print() {
 	log('imprimindo em ordem');
-	t.inOrder(log);
+	a.inOrder(log);
 	log('imprimindo em pré-ordem');
-	t.preOrder(log);
+	a.preOrder(log);
 	log('imprimindo em pós-ordem');
-	t.postOrder(log);	
+	a.postOrder(log);	
 }
 
-log('inserindo os elementos 92, 12, 93, 1, 17, 15, 41, 29, 49, 74 e 73');
-t.insert(92);
-t.insert(12);
-t.insert(93);
-t.insert(1);
-t.insert(17);
-t.insert(15);
-t.insert(41);
-t.insert(29);
-t.insert(49);
-t.insert(74);
-t.insert(73);
+log('inserindo os elementos 10, 11, 12, 13, 14, 15, 16, 17 e 18');
+a.insert(10);
+a.insert(11);
+a.insert(12);
+a.insert(13);
+a.insert(14);
+a.insert(15);
+a.insert(16);
+a.insert(17);
+a.insert(18);
 //
-log('o valor mínimo', t.min().key);
-log('o valor máximo', t.max().key);
+log('o valor mínimo', a.min().key);
+log('o valor máximo', a.max().key);
 print();
 //
-log('inserindo os elementos 6, 4 e 9');
-t.insert(6);
-t.insert(4);
-t.insert(9);
+log('inserindo os elementos 1, 2, 3, 4 e 5');
+a.insert(1);
+a.insert(2);
+a.insert(3);
+a.insert(4);
+a.insert(5);
 print();
 //
-log('remove o 29');
-t.remove(29);
+log('remove o 1');
+a.remove(1);
 print();
 //
-log('remove o 74');
-t.remove(74);
+log('remove o 11');
+a.remove(11);
 print()
 //
-log('remove o 41');
-t.remove(41);
+log('remove o 14');
+a.remove(14);
+print()
+log('remove o 18');
+a.remove(18);
 print()
