@@ -42,7 +42,8 @@ export class TreeNode {
 	constructor(key) {
 		this.key = key;
 		this.left = null;
-		this.right = null;		
+		this.right = null;
+		this.height = 0;
 	}
 }
 
