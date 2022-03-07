@@ -23,6 +23,12 @@ export function defaultToString(elmt) {
 	return elmt.toString();
 }
 
+export function swap(array, i, j) {
+	let temp = array[i];
+	array[i] = array[j];
+	array[j] = temp;
+}
+
 //Classes úteis.
 export class ListNode {
 	constructor(elmt) {
