@@ -1,4 +1,4 @@
-import {defaultEquals, DoublyNode} from '/ed/util.js';
+import {defaultEquals, DoublyNode} from '../../../util.js';
 import LinkedList from '../linkedlist.js';
 
 export default class DoublyLinkedList extends LinkedList {

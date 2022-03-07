@@ -1,4 +1,4 @@
-import {defaultCompare, swap} from "../util.js";
+import {defaultCompare, swap} from "../../util.js";
 
 export default class MinHeap {
 	constructor(compareFunction = defaultCompare) {

@@ -1,4 +1,4 @@
-import {defaultEquals, ListNode} from '/ed/util.js';
+import {defaultEquals, ListNode} from '../../../util.js';
 import LinkedList from '../linkedlist.js';
 
 export default class CircularLinkedList extends LinkedList {

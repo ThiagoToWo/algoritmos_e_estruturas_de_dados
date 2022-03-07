@@ -1,5 +1,5 @@
 import LinkedList from '../linkedlist/linkedlist.js';
-import {defaultToString, Pair} from '../util.js';
+import {defaultToString, Pair} from '../../util.js';
 
 export default class HashMap {
 	constructor(toStringFunction = defaultToString) {

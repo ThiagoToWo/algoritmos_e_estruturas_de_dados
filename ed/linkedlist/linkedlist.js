@@ -1,4 +1,4 @@
-import {defaultEquals, ListNode} from '../util.js';
+import {defaultEquals, ListNode} from '../../util.js';
 
 export default class LinkedList {
 	constructor(equalsFuntion = defaultEquals) {

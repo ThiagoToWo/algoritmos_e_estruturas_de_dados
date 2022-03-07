@@ -1,4 +1,4 @@
-import {defaultCompare, swap} from "../util.js";
+import {defaultCompare, swap} from "../../util.js";
 import MinHeap from "./minheap.js";
 
 export default class MaxHeap extends MinHeap {
