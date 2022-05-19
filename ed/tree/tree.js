@@ -1,4 +1,4 @@
-import {TreeNode, defaultCompare} from '../util.js';
+import {TreeNode, defaultCompare} from '../../util.js';
 
 export default class Tree {
 	constructor(compareFuntion = defaultCompare) {
@@ -16,7 +16,7 @@ export default class Tree {
 	}
 	
 	search(key) {
-		this._searchNode(this._root);
+		return this._searchNode(this._root, key);
 	}
 	
 	inOrder(callback) {
@@ -60,15 +60,15 @@ export default class Tree {
 		}
 	}
 	
-	_searchNode(node) {
+	_searchNode(node, key) {
 		if (node == null) return false;
 		
 		if (this.compare(key, node.key) === 0) { // igual
 			return true;
 		} else if (this.compare(key, node.key) === -1) { // menor
-			this._searchNode(node.left);
+			return this._searchNode(node.left);
 		} else { // maior
-			this._searchNode(node.right);
+			return this._searchNode(node.right);
 		}
 	}
 	

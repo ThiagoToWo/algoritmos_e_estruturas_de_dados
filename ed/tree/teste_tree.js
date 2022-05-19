@@ -47,3 +47,6 @@ print()
 log('remove o 17 (dois filhos)');
 t.remove(17);
 print()
+//
+log("O elemento 3 está na árvore?", t.search(3));
+log("O elemento 92 está na árvore?", t.search(92));
