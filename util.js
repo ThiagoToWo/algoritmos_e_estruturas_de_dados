@@ -75,3 +75,7 @@ export function initializeColor(vertices) {
 
 	return color;
 }
+
+export function printVertex(value) {
+    console.log('Vértices visitados: ' + value);
+}

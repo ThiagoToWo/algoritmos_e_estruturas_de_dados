@@ -1,6 +1,7 @@
 import {breadthFirstSearch, BFS} from "./bfs.js";
 import Graph from '../../ed/graph/graph.js';
 import Stack from '../../ed/stack/stack.js';
+import {printVertex} from "../../util.js";
 
 const graph = new Graph();
 const myVertices = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
@@ -20,11 +21,7 @@ graph.addEdge('B', 'E');
 graph.addEdge('B', 'F');
 graph.addEdge('E', 'I');
 
-function print(value) {
-    console.log('Vértices visitados: ' + value);
-}
-
-breadthFirstSearch(graph, myVertices[0], print);
+breadthFirstSearch(graph, myVertices[0], printVertex);
 
 const shortestPathA = BFS(graph, myVertices[0]);
 
