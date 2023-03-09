@@ -1,6 +1,6 @@
 import Graph from '../../ed/graph/graph.js';
 import {printVertex} from '../../util.js';
-import {depthFirstSearch} from './dfs.js';
+import {depthFirstSearch, DFS} from './dfs.js';
 
 const graph = new Graph();
 const myVertices = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I'];
@@ -21,3 +21,7 @@ graph.addEdge('B', 'F');
 graph.addEdge('E', 'I');
 
 depthFirstSearch(graph, printVertex);
+
+const nodeInfos = DFS(graph);
+
+console.log(nodeInfos);

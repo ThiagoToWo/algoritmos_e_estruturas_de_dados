@@ -68,5 +68,5 @@ export function BFS(graph, startVertex) {
     return {
         distances,
         predecessors
-    }
+    };
 }
